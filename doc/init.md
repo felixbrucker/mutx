@@ -89,7 +89,7 @@ use old versions of Upstart and do not supply the start-stop-daemon uitility.
 Copy mutxd.init to /etc/init.d/mutxd. Test by running "service mutxd start".
 
 Using this script, you can adjust the path and flags to the mutxd program by
-setting the RUPAYAD and FLAGS environment variables in the file
+setting the MUTXD and FLAGS environment variables in the file
 /etc/sysconfig/mutxd. You can also use the DAEMONOPTS environment variable here.
 
 5. Auto-respawn

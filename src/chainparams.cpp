@@ -100,12 +100,12 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0x63;
-        pchMessageStart[1] = 0x43;
+        pchMessageStart[0] = 0xac;
+        pchMessageStart[1] = 0xc4;
         pchMessageStart[2] = 0x49;
-        pchMessageStart[3] = 0x56;
+        pchMessageStart[3] = 0xbd;
         vAlertPubKey = ParseHex("04bcbf5f4dab42002143f5b25a2e6fd658dd300508c0fd3c890edfa241edcdd224c9fb62d0a3e86ab655c384b598bd3e92d25fee84774060a0d461f0e9483587e5");
-        nDefaultPort = 9020;
+        nDefaultPort = 44044;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // Mutx starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
@@ -120,7 +120,7 @@ public:
         nMaxMoneyOut = 75000000 * COIN;
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 200;
+        nLastPOWBlock = 172800; //4 months of pow.
         nModifierUpdateBlock = 999999999;
         nZerocoinStartHeight = 201;
         nAccumulatorStartHeight = 1;
@@ -132,46 +132,40 @@ public:
         
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
-         * be spent as it did not originally exist in the database.
-         *
-         * CBlock(hash=00000ffd590b14, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=e0028e, nTime=1390095618, nBits=1e0ffff0, nNonce=28917698, vtx=1)
-         *   CTransaction(hash=e0028e, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-         *     CTxIn(COutPoint(000000, -1), coinbase 04ffff001d01044c5957697265642030392f4a616e2f3230313420546865204772616e64204578706572696d656e7420476f6573204c6976653a204f76657273746f636b2e636f6d204973204e6f7720416363657074696e6720426974636f696e73)
-         *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
-         *   vMerkleTree: e0028e
-         */
-        const char* pszTimestamp = "BBC News - Plane crashes after Moscow take-off......feb-2018-Remapper";
+         * be spent as it did not originally exist in the database.*/
+        const char* pszTimestamp = "Trump vows quick action in response to suspected chemical attack in Syria - 4-8-18 Reuters";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 0 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("042292b1f401860eea99e1a8a103effbd7e1c013a59a1a3a0c91c9d1997a0bc6f338567278c11344802838c107055bf7c1641eaed61e879245c255a4f5be5746fc") << OP_CHECKSIG;
+        txNew.vout[0].nValue = 50 * COIN;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1518390464;
-        genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 1394720;
+        genesis.nTime = 1523355303;
+        genesis.nBits = 504365040;
+        genesis.nNonce = 242713;
 
 		
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000059f8ba2b9ec3f6690af8d118ff1ffd7d791a420636d147846393d7be6b2"));
-        assert(genesis.hashMerkleRoot == uint256("0x66a06bfe0091e98d5b26381f6ac6f75b82efb6d181e3480d36dbc57e44393dba"));
+        assert(hashGenesisBlock == uint256("0x000006f329b20e28e7a2c1da5ca22960712796310c3d88d118c67e10e3383536"));
+        assert(genesis.hashMerkleRoot == uint256("0x03eea94f419307c6da5cb66b6bca41c42318d67847a0c0b1e08c8ffae8417b1a"));
 		
-		vSeeds.push_back(CDNSSeedData("dns.mutx.io", "dns.mutx.io"));         // Primary DNS Seeder
-		vSeeds.push_back(CDNSSeedData("dns1.mutx.io", "dns1.mutx.io"));         // Single node address
-        vSeeds.push_back(CDNSSeedData("dns2.mutxcoin.org", "dns2.mutxcoin.org"));       // Single node address
-        vSeeds.push_back(CDNSSeedData("dns3.mutxcoin.org", "dns3.mutxcoin.org"));       // Single node address
-		vSeeds.push_back(CDNSSeedData("dns4.mutx.io", "dns4.mutx.io"));
-		vSeeds.push_back(CDNSSeedData("dns5.mutx.io", "dns5.mutx.io")); 		
+        vSeeds.clear();
+		// vSeeds.push_back(CDNSSeedData("dns.mutx.io", "dns.mutx.io"));         // Primary DNS Seeder
+		// vSeeds.push_back(CDNSSeedData("dns1.mutx.io", "dns1.mutx.io"));         // Single node address
+        // vSeeds.push_back(CDNSSeedData("dns2.mutxcoin.org", "dns2.mutxcoin.org"));       // Single node address
+        // vSeeds.push_back(CDNSSeedData("dns3.mutxcoin.org", "dns3.mutxcoin.org"));       // Single node address
+		// vSeeds.push_back(CDNSSeedData("dns4.mutx.io", "dns4.mutx.io"));
+		// vSeeds.push_back(CDNSSeedData("dns5.mutx.io", "dns5.mutx.io")); 		
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 15);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 8);
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 212);
-        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
-        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 50);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 110);
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 204);
+        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0xE4).convert_to_container<std::vector<unsigned char> >();
         // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0xbc).convert_to_container<std::vector<unsigned char> >();
 
@@ -188,12 +182,12 @@ public:
         fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "0459eede7626441f7802af2736cb3a4aeb3e1f95070cde39d068a4f16525ee8fdd3c075f29f9e115aeb91952239194aa6ac19765574fed8a0d7f174f2b450e9630";
+        strSporkKey = "31c02fdc5ca6856021d03cc69c88e53600ecdecc7f67f1175a1ff3c48cd4a3318f926d84dbcec85fd922abce7231764a6e1b64e3a7fcb1b1df62c6699f9ebdc0d9";
         strObfuscationPoolDummyAddress = "Ceax8jHDQ1s2kHVjysEoTQncVdUrNBuXtp";
         nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
 
         /** Zerocoin */
-        zerocoinModulus = "0xc95577b6dce0049b0a20c779af38079355abadde1a1d80c353f6cb697a7ae5a087bad39caa5798478551d0f9d91e6267716506f32412de1d19d17588765eb9502b85c6a18abdb05791cfd8b734e960281193705eeece210920cc922b3af3ceb178bf12c22eb565d5767fbf19545639be8953c2c38ffad41f3371e4aac750ac2d7bd614b3faabb453081d5d88fdbb803657a980bc93707e4b14233a2358c97763bf28f7c933206071477e8b371f229bc9ce7d6ef0ed7163aa5dfe13bc15f7816348b328fa2c1e69d5c88f7b94cee7829d56d1842d77d7bb8692e9fc7b7db059836500de8d57eb43c345feb58671503b932829112941367996b03871300f25efb5";
+        zerocoinModulus = "c23301f608f43faf1f9a79a684a218d503368748e3b823e81c3d58d17ecf90faebd55a48ddcff6320865f7bfde6af3adda4da6d01e3ae5bf9493e0ba50b04291cd7b3f4630f69df10eab86ad3b810895efecb45ee063a14d9891aa5c20639459d868be4c8f6ef8c00952fa679b90e4e90a2f0ac9bc2a1db70d262d7db7c983720dbcbb992a153fe604c7ddffab12e28de19e1008ca6bf19a4c038017a9d0e9682c87d761a498fa88bbfe37dee2303985cfcdff4f33b98cfb55d0ea0bc25a71210cd61dca77cdbf6a054a6f47b0a14c79147e4d9dc3e10305beba32b82314cd7d5858431210801863c70f73ba64b1217781192a0d390e3f3e79ba89e7b80aaa2fb9";
         nMaxZerocoinSpendsPerTransaction = 7; // Assume about 20kb each
         nMinZerocoinMintFee = 1 * ZCENT; //high fee required for zerocoin mints
         nMintRequiredConfirmations = 20; //the maximum amount of confirmations until accumulated in 19
@@ -232,8 +226,8 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // Mutx: 1 day
         nTargetSpacing = 1 * 60;  // Mutx: 1 minute
-        nLastPOWBlock = 200;
-        nMaturity = 15;
+        nLastPOWBlock = 86400; //60 days of pow.
+        nMaturity = 100;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
@@ -245,17 +239,17 @@ public:
         nBlockLastGoodCheckpoint = 9891730; //Last valid accumulator checkpoint
         
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1515616140;
-        genesis.nNonce = 79855;
+        genesis.nTime = 1523355533;
+        genesis.nNonce = 78494;
 
 	    hashGenesisBlock = genesis.GetHash();
-        //assert(hashGenesisBlock == uint256("0x000007cff63ef602a51bf074e384b3516f0dd202f14d52f7c8c9b1af9423ab2e"));
-
+        assert(hashGenesisBlock == uint256("0x00000168febecbc4c5ca015718d30c2779fd023e9e16bf7dd319056c04837291"));
+        
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("testnet.mutx.io", "testnet.mutx.io"));         // Single node address
-        vSeeds.push_back(CDNSSeedData("testnet1.mutx.io", "testnet1.mutx.io"));       // Single node address
-        vSeeds.push_back(CDNSSeedData("testnet.mutxcoin.org", "testnet.mutxcoin.org"));       // Single node address
+        // vSeeds.push_back(CDNSSeedData("testnet.mutx.io", "testnet.mutx.io"));         // Single node address
+        // vSeeds.push_back(CDNSSeedData("testnet1.mutx.io", "testnet1.mutx.io"));       // Single node address
+        // vSeeds.push_back(CDNSSeedData("testnet.mutxcoin.org", "testnet.mutxcoin.org"));       // Single node address
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet mutx addresses start with 'x' or 'y'
@@ -279,7 +273,7 @@ public:
         fTestnetToBeDeprecatedFieldRPC = true;
 
         nPoolMaxTransactions = 2;
-        strSporkKey = "04188441e39d99aa69068ee07d26980f459b84465bbd765c6ee15d1aec5b76b5aebb01b24be184a1d3a12af61276549d96cc9499d909f8afc183132837d18d643d";
+        strSporkKey = "725c04c1a41a0fc92a2aa520470e107a9ae6437374b8822270ef4752d0d15e75a9fe9e2136a45808c3af590c654b37bf0f1225e906609f462d78201b630cc8aa5d";
         strObfuscationPoolDummyAddress = "xp87cG8UEQgzs1Bk67Yk884C7pnQfAeo7q";
         nStartMasternodePayments = 1420837558; //Fri, 09 Jan 2015 21:05:58 GMT
         nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short

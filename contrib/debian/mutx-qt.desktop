@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Mutx
+Comment=Mutx P2P Cryptocurrency
+Comment[fr]=Mutx, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Mutx, eşten eşe kriptografik sanal para birimi
+Exec=mutx-qt %u
+Terminal=false
+Type=Application
+Icon=mutx128
+MimeType=x-scheme-handler/mutx;
+Categories=Office;Finance;

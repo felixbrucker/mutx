@@ -20,8 +20,8 @@ QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
     unitlist.append(MUTX);
-    unitlist.append(mRUP);
-    unitlist.append(uRUP);
+    unitlist.append(mMUTX);
+    unitlist.append(uMUTX);
     return unitlist;
 }
 
@@ -29,8 +29,8 @@ bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
     case MUTX:
-    case mRUP:
-    case uRUP:
+    case mMUTX:
+    case uMUTX:
         return true;
     default:
         return false;
@@ -42,9 +42,9 @@ QString BitcoinUnits::id(int unit)
     switch (unit) {
     case MUTX:
         return QString("mutx");
-    case mRUP:
+    case mMUTX:
         return QString("mmutx");
-    case uRUP:
+    case uMUTX:
         return QString::fromUtf8("umutx");
     default:
         return QString("???");
@@ -57,21 +57,21 @@ QString BitcoinUnits::name(int unit)
         switch (unit) {
         case MUTX:
             return QString("MUTX");
-        case mRUP:
-            return QString("mRUP");
-        case uRUP:
-            return QString::fromUtf8("μRUP");
+        case mMUTX:
+            return QString("mMUTX");
+        case uMUTX:
+            return QString::fromUtf8("μMUTX");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
         case MUTX:
-            return QString("tRUP");
-        case mRUP:
-            return QString("mtRUP");
-        case uRUP:
-            return QString::fromUtf8("μtRUP");
+            return QString("tMUTX");
+        case mMUTX:
+            return QString("mtMUTX");
+        case uMUTX:
+            return QString::fromUtf8("μtMUTX");
         default:
             return QString("???");
         }
@@ -84,9 +84,9 @@ QString BitcoinUnits::description(int unit)
         switch (unit) {
         case MUTX:
             return QString("MUTX");
-        case mRUP:
+        case mMUTX:
             return QString("Milli-MUTX (1 / 1" THIN_SP_UTF8 "000)");
-        case uRUP:
+        case uMUTX:
             return QString("Micro-MUTX (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
@@ -94,11 +94,11 @@ QString BitcoinUnits::description(int unit)
     } else {
         switch (unit) {
         case MUTX:
-            return QString("TestRUPs");
-        case mRUP:
-            return QString("Milli-TestRUP (1 / 1" THIN_SP_UTF8 "000)");
-        case uRUP:
-            return QString("Micro-TestRUP (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            return QString("TestMUTXs");
+        case mMUTX:
+            return QString("Milli-TestMUTX (1 / 1" THIN_SP_UTF8 "000)");
+        case uMUTX:
+            return QString("Micro-TestMUTX (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
@@ -110,9 +110,9 @@ qint64 BitcoinUnits::factor(int unit)
     switch (unit) {
     case MUTX:
         return 100000000;
-    case mRUP:
+    case mMUTX:
         return 100000;
-    case uRUP:
+    case uMUTX:
         return 100;
     default:
         return 100000000;
@@ -124,9 +124,9 @@ int BitcoinUnits::decimals(int unit)
     switch (unit) {
     case MUTX:
         return 8;
-    case mRUP:
+    case mMUTX:
         return 5;
-    case uRUP:
+    case uMUTX:
         return 2;
     default:
         return 0;

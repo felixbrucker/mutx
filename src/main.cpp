@@ -2163,10 +2163,10 @@ int64_t GetBlockValue(int nHeight)
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount)
 {
     int64_t ret = 0;
-    //masternodes receive 45%
+    //masternodes receive 45% of the block reward.
     if(Params().NetworkID() == CBaseChainParams::MAIN){
         return nHeight >= 25 
-            ? blockValue  / 100 * 50
+            ? blockValue  / 100 * 45
             : 0;
     }
     else if (Params().NetworkID() == CBaseChainParams::TESTNET) {
@@ -2176,7 +2176,7 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
     }
     else{
         //we must be on unit test or regression test
-        return blockValue / 
+        return blockValue / 100 * 60;
     }
 }
 
@@ -2677,7 +2677,7 @@ void RecalculateZMUTXSpent()
     pblocktree->Flush();
 }
 
-bool RecalculateRUPSupply(int nHeightStart)
+bool RecalculateMUTXSupply(int nHeightStart)
 {
     if (nHeightStart > chainActive.Height())
         return false;
@@ -2916,7 +2916,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     if (!fVerifyingBlocks && pindex->nHeight == Params().Zerocoin_StartHeight() + 1) {
         RecalculateZMUTXMinted();
         RecalculateZMUTXSpent();
-        RecalculateRUPSupply(1);
+        RecalculateMUTXSupply(1);
     }
 
     // Initialize zerocoin supply to the supply from previous block

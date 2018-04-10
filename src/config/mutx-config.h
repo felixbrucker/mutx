@@ -1,9 +1,9 @@
 /* src/config/mutx-config.h.  Generated from mutx-config.h.in by configure.  */
 /* src/config/rupaya-config.h.in.  Generated from configure.ac by autoheader.  */
 
-#ifndef RUP_CONFIG_H
+#ifndef MUTX_CONFIG_H
 
-#define RUP_CONFIG_H
+#define MUTX_CONFIG_H
 
 /* Define if building universal (internal helper macro) */
 /* #undef AC_APPLE_UNIVERSAL_BUILD */
@@ -340,4 +340,4 @@
 /* Define for large files, on AIX-style hosts. */
 /* #undef _LARGE_FILES */
 
-#endif //RUP_CONFIG_H
+#endif //MUTX_CONFIG_H

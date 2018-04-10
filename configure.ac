@@ -19,9 +19,9 @@ BITCOIN_TX_NAME=mutx-tx
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef RUP_CONFIG_H])
-AH_TOP([#define RUP_CONFIG_H])
-AH_BOTTOM([#endif //RUP_CONFIG_H])
+AH_TOP([#ifndef MUTX_CONFIG_H])
+AH_TOP([#define MUTX_CONFIG_H])
+AH_BOTTOM([#endif //MUTX_CONFIG_H])
 
 dnl faketime breaks configure and is only needed for make. Disable it here.
 unset FAKETIME

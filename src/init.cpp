@@ -1360,7 +1360,7 @@ bool AppInit2(boost::thread_group& threadGroup)
                         RecalculateZMUTXMinted();
                         RecalculateZMUTXSpent();
                     }
-                    RecalculateRUPSupply(1);
+                    RecalculateMUTXSupply(1);
                 }
 
                 // Force recalculation of accumulators.
@@ -1789,8 +1789,8 @@ bool AppInit2(boost::thread_group& threadGroup)
        is convertable to another.
 
        For example:
-       1RUP+1000 == (.1RUP+100)*10
-       10RUP+10000 == (1RUP+1000)*10
+       1MUTX+1000 == (.1MUTX+100)*10
+       10MUTX+10000 == (1MUTX+1000)*10
     */
     obfuScationDenominations.push_back((10000 * COIN) + 10000000);
     obfuScationDenominations.push_back((1000 * COIN) + 1000000);

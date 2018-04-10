@@ -2134,23 +2134,23 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = 120 * COIN;
     } else if (nHeight <= 200000 && nHeight >= 100000) {
         nSubsidy = 110 * COIN;
-		} else if (nHeight <= 300000 && nHeight >= 200000) {
+    } else if (nHeight <= 300000 && nHeight >= 200000) {
         nSubsidy = 100 * COIN;
-		} else if (nHeight <= 400000 && nHeight >= 300000) {
+    } else if (nHeight <= 400000 && nHeight >= 300000) {
         nSubsidy = 90 * COIN;
-		} else if (nHeight <= 500000 && nHeight >= 400000) {
+    } else if (nHeight <= 500000 && nHeight >= 400000) {
         nSubsidy = 80 * COIN;
-		} else if (nHeight <= 600000 && nHeight >= 500000) {
+    } else if (nHeight <= 600000 && nHeight >= 500000) {
         nSubsidy = 70 * COIN;
-		} else if (nHeight <= 700000 && nHeight >= 600000) {
+    } else if (nHeight <= 700000 && nHeight >= 600000) {
         nSubsidy = 60 * COIN;
-		} else if (nHeight <= 800000 && nHeight >= 700000) {
+    } else if (nHeight <= 800000 && nHeight >= 700000) {
         nSubsidy = 50 * COIN;
-		} else if (nHeight <= 900000 && nHeight >= 800000) {
+    } else if (nHeight <= 900000 && nHeight >= 800000) {
         nSubsidy = 40 * COIN;
-		} else if (nHeight <= 1000000 && nHeight >= 900000) {
+    } else if (nHeight <= 1000000 && nHeight >= 900000) {
         nSubsidy = 30 * COIN;
-		} else if (nHeight <= 1100000 && nHeight >= 1000000) {
+    } else if (nHeight <= 1100000 && nHeight >= 1000000) {
         nSubsidy = 10 * COIN;
     } else if (nHeight >= 1200000) {
         nSubsidy = 0.001 * COIN;
@@ -2163,22 +2163,21 @@ int64_t GetBlockValue(int nHeight)
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount)
 {
     int64_t ret = 0;
-
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200)
-            return 0;
+    //masternodes receive 45%
+    if(Params().NetworkID() == CBaseChainParams::MAIN){
+        return nHeight >= 25 
+            ? blockValue  / 100 * 50
+            : 0;
     }
-	
-	// 60% for Masternodes
-	if (nHeight < 5 && nHeight > 0) {
-	    ret = blockValue  / 100 * 0;
-	} else {
-		ret = blockValue  / 100 * 60;
-		
-	}
-			
-	
-    return ret;
+    else if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+        return nHeight >= 200
+            ? blockValue  / 100 * 50
+            : 0;
+    }
+    else{
+        //we must be on unit test or regression test
+        return blockValue / 
+    }
 }
 
 bool IsInitialBlockDownload()

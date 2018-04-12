@@ -142,7 +142,6 @@ define $(package)_preprocess_cmds
   cp -f $($(package)_patch_dir)/aarch32-qmake.conf qtbase/mkspecs/arm-linux-gnueabihf/qmake.conf &&\
   mkdir -p qtbase/mkspecs/aarch64-linux-gnu &&\
   cp -f qtbase/mkspecs/linux-arm-gnueabi-g++/qplatformdefs.h qtbase/mkspecs/aarch64-linux-gnu/ &&\
-  cp -f $($(package)_patch_dir)/aarch64-qmake.conf qtbase/mkspecs/aarch64-linux-gnu/qmake.conf &&\
   patch -p1 < $($(package)_patch_dir)/mingw-uuidof.patch && \
   patch -p1 < $($(package)_patch_dir)/pidlist_absolute.patch && \
   patch -p1 < $($(package)_patch_dir)/fix-xcb-include-order.patch && \

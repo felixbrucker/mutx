@@ -46,10 +46,9 @@ before_script:
     - if [ -n "$OSX_SDK" -a -f depends/sdk-sources/MacOSX${OSX_SDK}.sdk.tar.gz ]; then tar -C depends/SDKs -xf depends/sdk-sources/MacOSX${OSX_SDK}.sdk.tar.gz; fi
 script:
     - OUTDIR=$BASE_OUTDIR/$TRAVIS_PULL_REQUEST/$TRAVIS_JOB_NUMBER-$HOST
-    - ./autogen.sh
-    - cd depends && timeout 1800 make $MAKEJOBS || true
-    - cd $TRAVIS_BUILD_DIR && ./configure --prefix=$TRAVIS_BUILD_DIR/depends/$HOST
-    - make $MAKEJOBS
+    - | timeout 1800 ./build.sh
+            # Convert the timeout exit code to 0.
+            RESULT=$?; if [ $RESULT -eq 0 ] || [ $RESULT -eq 142 ]; then true; else false; fi;
 before_deploy:
     - ./pre-deploy.sh
 deploy:

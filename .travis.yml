@@ -18,12 +18,10 @@ env:
     - BASE_OUTDIR=$TRAVIS_BUILD_DIR/out
     - BASE_PACKAGES="zlib1g-dev zip git build-essential libtool autotools-dev automake pkg-config libevent-dev libssl-dev bsdmainutils curl libboost-all-dev libdb4.8-dev libdb4.8++-dev libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler libqrencode-dev"
   matrix:
-# ARM32 soft
-    - HOST=arm-linux-gnueabi PACKAGES="g++-arm-linux-gnueabi" CONF="--with-gui"
-# ARM32 hard
+# ARM32
     - HOST=arm-linux-gnueabihf PACKAGES="g++-arm-linux-gnueabihf" OPT="NO_QT=1" CONF="--without-gui"
 # ARM64
-    - HOST=aarch64-linux-gnu PACKAGES="g++-aarch64-linux-gnu" CONF="--with-gui"
+    - HOST=aarch64-linux-gnu PACKAGES="g++-aarch64-linux-gnu" OPT="NO_QT=1" CONF="--without-gui"
 # Win32
     - HOST=i686-w64-mingw32 PACKAGES="g++-mingw-w64-i686 mingw-w64-i686-dev"
 # Win64

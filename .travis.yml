@@ -19,9 +19,9 @@ env:
     - BASE_PACKAGES="zlib1g-dev zip git build-essential libtool autotools-dev automake pkg-config libevent-dev libssl-dev bsdmainutils curl libboost-all-dev libdb4.8-dev libdb4.8++-dev libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler libqrencode-dev"
   matrix:
 # ARM32
-    - HOST=arm-linux-gnueabihf PACKAGES="g++-arm-linux-gnueabihf python3-pip" OPT="NO_QT=1" CONF="--without-gui"
+    - HOST=arm-linux-gnueabihf PACKAGES="g++-arm-linux-gnueabihf python3-pip" OPT="NO_QT=1" CONF="--with-gui"
 # ARM64
-    - HOST=aarch64-linux-gnu PACKAGES="g++-aarch64-linux-gnu python3-pip" OPT="NO_QT=1" CONF="--without-gui"
+    - HOST=aarch64-linux-gnu PACKAGES="g++-aarch64-linux-gnu python3-pip" OPT="NO_QT=1" CONF="--with-gui"
 # Win32
     - HOST=i686-w64-mingw32 PACKAGES="python3 nsis g++-mingw-w64-i686 mingw-w64-i686-dev"
 # Win64
